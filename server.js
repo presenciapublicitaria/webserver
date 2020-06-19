@@ -55,7 +55,7 @@ app.get('/about', (req, res) => {
 //     console.log('Escuchando contenido del puerto 8090');
 // })
 
-Esto se pone para subirlo a Heroku
+// Esto se pone para subirlo a Heroku
 app.listen(port, () => {
     console.log(`Escuchando contenido del puerto ${ port }`);
 })
