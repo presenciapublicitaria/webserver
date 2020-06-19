@@ -1,6 +1,13 @@
 const express = require('express'); //La libreria Express permite montar tu server pero con poco codigo
 const app = express();
 const hbs = require('hbs'); //HBS permite editar handlebars para usar las paginas de vista hbs
+require('./hbs/helpers');
+
+// Configuracion para Heroku
+
+const port = process.env.PORT || 8090
+
+
 
 app.use(express.static(__dirname + '/public'))
 
@@ -10,6 +17,8 @@ app.use(express.static(__dirname + '/public'))
 hbs.registerPartials(__dirname + '/views/parciales/');
 //Usando el motor hbs
 app.set('view engine', 'hbs');
+
+
 
 //Si deseamos crear un servicio web desde la raiz
 
@@ -25,17 +34,14 @@ app.get('/', (req, res) => {
     // res.send(salida);
 
     res.render('home', {
-        nombre: 'Princesa Rosada',
-        anio: new Date().getFullYear()
+        nombre: 'bebe princesa rosada estela'
     });
 
 });
 
 app.get('/about', (req, res) => {
 
-    res.render('about', {
-        anio: new Date().getFullYear()
-    });
+    res.render('about');
 
 })
 
@@ -44,7 +50,12 @@ app.get('/about', (req, res) => {
 // })
 
 
+// Esto se pone cuando quieres hacerlo con tu propio puerto
+// app.listen(8090, () => {
+//     console.log('Escuchando contenido del puerto 8090');
+// })
 
-app.listen(8090, () => {
-    console.log('Escuchando contenido del puerto 8090');
+Esto se pone para subirlo a Heroku
+app.listen(port, () => {
+    console.log(`Escuchando contenido del puerto ${ port }`);
 })
